@@ -1,157 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tipos de Aprendizaje — AZUL (mejorado)</title>
-
-<style>
-  /* ======= PALETA VOX ======= */
-  :root{
-    --crema: #f3dfc9;
-    --naranja: #f7a75d;
-    --naranja-claro: #f4b684;
-    --vino: #8f2f2f;
-    --texto: #402a18;
-    --card-shadow: rgba(0,0,0,0.18);
-    --glass: rgba(255,255,255,0.6);
-  }
-
-  /* ======= RESET CASCADO RAPIDO ======= */
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
-  body{
-    background: linear-gradient(180deg,var(--crema) 0%, #f7ecd7 100%);
-    color:var(--texto);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.5;
-  }
-
-  /* ======= LAYOUT PRINCIPAL ======= */
-  .wrap{max-width:1200px;margin:28px auto;padding:20px;}
-  header.site-header{
-    background:var(--naranja);
-    border-left:10px solid var(--vino);
-    border-radius:12px;
-    padding:26px;
-    box-shadow:0 10px 24px var(--card-shadow);
-    display:flex;
-    gap:20px;
-    align-items:center;
-    justify-content:space-between;
-  }
-
-  header .title{
-    display:flex;flex-direction:column;gap:6px;
-  }
-  header h1{
-    margin:0;color:#fff;font-size:30px;letter-spacing:0.6px;text-shadow:2px 2px 10px rgba(0,0,0,0.18);
-  }
-  header p.lead{margin:0;color:rgba(255,255,255,0.95);font-weight:600}
-
-  /* boton pequeño */
-  .cta-row{display:flex;gap:10px;align-items:center}
-  .btn{
-    background:var(--vino); color:#fff; border:none; padding:10px 14px;border-radius:10px;
-    font-weight:700; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.12);
-  }
-  .btn.secondary{background:transparent;color:var(--vino);border:2px solid rgba(143,47,47,0.12) }
-
-  /* HERO / INTRO */
-  .intro{
-    display:grid;
-    grid-template-columns: 1fr 360px;
-    gap:22px;
-    margin-top:20px;
-    align-items:start;
-  }
-  .card{
-    background:var(--naranja);
-    border-left:10px solid var(--vino);
-    padding:18px;border-radius:12px;box-shadow:0 8px 20px var(--card-shadow);
-  }
-  .card h2{margin:0 0 8px 0;color:var(--vino);font-size:22px}
-  .card p{margin:0;color:var(--texto);font-size:16px}
-
-  /* SIDEBAR multimedia (espacio para imagenes/videos) */
-  .media {
-    background:var(--naranja-claro);
-    border-radius:12px;padding:12px;
-    display:flex;flex-direction:column;gap:12px;align-items:center;
-    min-height:180px;justify-content:center;
-  }
-  .media .placeholder{
-    width:100%;height:160px;border-radius:10px;background:linear-gradient(90deg,#fbe4c8,#ffd9a3);
-    display:flex;align-items:center;justify-content:center;color:var(--vino);font-weight:700;
-    cursor:pointer;border:3px dashed rgba(143,47,47,0.12);
-  }
-  .media small{color:var(--vino)}
-
-  /* NAV INTERACTIVO (tabs) */
-  .tabs{
-    margin-top:20px;
-    display:flex;gap:10px;
-    flex-wrap:wrap;
-  }
-  .tab-btn{
-    background:transparent;border:2px solid rgba(143,47,47,0.06);padding:10px 12px;border-radius:10px;
-    color:var(--vino);cursor:pointer;font-weight:700;
-  }
-  .tab-btn.active{background:var(--vino);color:#fff;box-shadow:0 8px 18px rgba(0,0,0,0.18)}
-
-  /* SECCIONES DE CONTENIDO (cards grid) */
-  .section{
-    margin-top:26px;
-  }
-  .section .heading{display:flex;align-items:center;gap:12px}
-  .section h3{margin:0;color:var(--vino)}
-
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:14px;
-    margin-top:14px;
-  }
-
-  .tile{
-    background:var(--naranja-claro);
-    border-radius:12px;padding:14px;
-    box-shadow:0 8px 18px rgba(0,0,0,0.12);
-    transition:transform .18s ease, box-shadow .18s ease;
-    display:flex;flex-direction:column;gap:8px;
-  }
-  .tile:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(0,0,0,0.16)}
-  .tile h4{margin:0;color:var(--vino);font-size:18px}
-  .tile p{margin:0;font-size:15px;color:var(--texto)}
-
-  /* ICON ROW small */
-  .meta{display:flex;gap:10px;align-items:center;font-size:13px;color:rgba(64,42,24,0.8)}
-  .meta .dot{height:8px;width:8px;border-radius:8px;background:var(--vino);display:inline-block}
-
-  /* ACCORDION (actividades / estrategias) */
-  .accordion{margin-top:12px;border-radius:10px;overflow:hidden}
-  .acc-item{background:var(--crema);border-left:8px solid var(--vino);margin-bottom:10px;padding:12px;border-radius:8px;box-shadow:0 6px 14px rgba(0,0,0,0.06)}
-  .acc-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-  .acc-head h5{margin:0;color:var(--vino)}
-  .acc-body{margin-top:8px;display:none}
-
-  /* COMPARATIVA (tabla responsive) */
-  .compare{margin-top:18px;background:linear-gradient(180deg,var(--crema),#fff);padding:12px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,0.06)}
-  table{width:100%;border-collapse:collapse}
-  th,td{padding:10px;border-bottom:1px solid rgba(0,0,0,0.06);text-align:left}
-  th{background:transparent;color:var(--vino);}
-
-  /* FOOTER */
-  footer{margin-top:30px;padding:18px;border-radius:10px;background:var(--vino);color:#fff;text-align:center;font-weight:700}
-
-  /* RESPONSIVE */
-  @media (max-width:900px){
-    .intro{grid-template-columns:1fr}
-    .media .placeholder{height:140px}
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tipos de Aprendizaje — AZUL</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="wrap">
@@ -177,22 +32,22 @@
         Conocer los tipos de aprendizaje ayuda a personalizar estrategias, reducir la frustración y
         potenciar el rendimiento académico y profesional.
       </p>
-      <p style="margin-top:12px;font-weight:600;color:var(--vino);">Cómo usar esta página:</p>
-      <ul style="margin:8px 0 0 18px;color:var(--texto)">
+      <p>Cómo usar esta página:</p>
+      <ul>
         <li>Explora los tipos principales y sus ejemplos.</li>
         <li>Accede a estrategias prácticas por cada estilo.</li>
-        <li>Descarga o inserta tus imágenes / actividades en el área multimedia.</li>
+        <li>Descarga o inserta imágenes o actividades en el área multimedia.</li>
       </ul>
     </div>
 
     <aside class="media" aria-label="multimedia">
       <div class="placeholder" id="openMedia">Haz clic para añadir imagen / video</div>
-      <small>Espacio interactivo — soporta imágenes, videos o embed</small>
+      <small>Espacio interactivo</small>
     </aside>
   </div>
 
   <!-- TABS -->
-  <div class="tabs" role="tablist" aria-label="Secciones rápidas">
+  <div class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="types">Tipos</button>
     <button class="tab-btn" data-tab="why">Por qué importa</button>
     <button class="tab-btn" data-tab="strategies">Estrategias</button>
@@ -200,1079 +55,104 @@
     <button class="tab-btn" data-tab="compare">Comparativa</button>
   </div>
 
-  <!-- CONTENT: TABS / PANELS -->
-  <main style="margin-top:18px;">
+  <main>
 
-    <!-- TAB: TYPES -->
-    <section id="types" class="section" role="tabpanel">
-      <div class="heading"><h3>Tipos de Aprendizaje</h3></div>
-      <p style="color:var(--texto);font-size:16px">
-        A continuación se describen los estilos más útiles para docentes y estudiantes. Muchos individuos combinan varios estilos.
-      </p>
+    <!-- TIPOS -->
+    <section id="types" class="section">
+      <h3>Tipos de Aprendizaje</h3>
 
-      <div class="grid" aria-live="polite">
-        <!-- Visual -->
-        <article class="tile">
-          <h4>Visual</h4>
-          <p>Favorece imágenes, esquemas, mapas mentales y colores. Ideal para diagramas y recursos gráficos.</p>
-          <div class="meta"><span class="dot"></span><span>Recursos: infografías, presentaciones</span></div>
-        </article>
+      <article>
+        <h4>Visual</h4>
+        <p>Uso de imágenes, esquemas y mapas mentales.</p>
+      </article>
 
-        <!-- Auditivo -->
-        <article class="tile">
-          <h4>Auditivo</h4>
-          <p>Aprende escuchando: podcasts, explicaciones oral, rimas. El ritmo y la entonación ayudan.</p>
-          <div class="meta"><span class="dot"></span><span>Recursos: grabaciones, debates</span></div>
-        </article>
+      <article>
+        <h4>Auditivo</h4>
+        <p>Aprendizaje mediante la escucha y explicación oral.</p>
+      </article>
 
-        <!-- Kinestésico -->
-        <article class="tile">
-          <h4>Kinestésico</h4>
-          <p>Necesita acción: experimentos, role-play, ejercicios prácticos y manipulativos.</p>
-          <div class="meta"><span class="dot"></span><span>Recursos: laboratorios, talleres</span></div>
-        </article>
+      <article>
+        <h4>Kinestésico</h4>
+        <p>Aprender haciendo, con movimiento y práctica.</p>
+      </article>
 
-        <!-- Lectura/Escritura -->
-        <article class="tile">
-          <h4>Lectura / Escritura</h4>
-          <p>Prefiere textos, resúmenes y organización escrita. Excelente para investigación y redacción.</p>
-          <div class="meta"><span class="dot"></span><span>Recursos: artículos, apuntes</span></div>
-        </article>
+      <article>
+        <h4>Lectura / Escritura</h4>
+        <p>Preferencia por textos, apuntes y redacción.</p>
+      </article>
 
-        <!-- Social -->
-        <article class="tile">
-          <h4>Social</h4>
-          <p>Aprende en interacción: proyectos, tutorías entre pares, trabajo colaborativo.</p>
-          <div class="meta"><span class="dot"></span><span>Recursos: grupos, foros</span></div>
-        </article>
+      <article>
+        <h4>Social</h4>
+        <p>Trabajo en equipo y aprendizaje colaborativo.</p>
+      </article>
 
-        <!-- Solitario -->
-        <article class="tile">
-          <h4>Solitario / Intrapersonal</h4>
-          <p>Prefiere reflexión, prácticas autónomas y planificación personal.</p>
-          <div class="meta"><span class="dot"></span><span>Recursos: diarios, rutinas de estudio</span></div>
-        </article>
-      </div>
+      <article>
+        <h4>Solitario</h4>
+        <p>Estudio individual y reflexión personal.</p>
+      </article>
     </section>
 
-    <!-- TAB: WHY -->
+    <!-- POR QUÉ IMPORTA -->
     <section id="why" class="section" style="display:none">
-      <div class="heading"><h3>¿Por qué es importante?</h3></div>
-      <p>
-        Identificar estilos de aprendizaje optimiza tiempo y reduce desgaste. La educación inclusiva nace
-        al adaptar métodos a la diversidad cognitiva. Aquí algunos beneficios concretos:
-      </p>
-
-      <div class="grid">
-        <div class="tile"><h4>Mejora del rendimiento</h4><p>Con el método correcto, la comprensión y recuerdo aumentan.</p></div>
-        <div class="tile"><h4>Reducción de ansiedad</h4><p>Menos frustración cuando la estrategia pedagógica es adecuada.</p></div>
-        <div class="tile"><h4>Mayor autonomía</h4><p>El estudiante construye su propio sistema de aprendizaje.</p></div>
-        <div class="tile"><h4>Inclusión</h4><p>Ambientes adaptados permiten la participación plena de todas las personas.</p></div>
-      </div>
+      <h3>¿Por qué es importante?</h3>
+      <p>Ayuda a mejorar el rendimiento, reducir frustración y fomentar la inclusión.</p>
     </section>
 
-    <!-- TAB: STRATEGIES -->
+    <!-- ESTRATEGIAS -->
     <section id="strategies" class="section" style="display:none">
-      <div class="heading"><h3>Estrategias recomendadas por tipo</h3></div>
-      <p>Consejos prácticos para aplicar en el aula o en el estudio personal.</p>
-
-      <div class="accordion" id="accordionStrategies">
-        <div class="acc-item">
-          <div class="acc-head"><h5>Visual — Estrategias</h5><button class="btn secondary acc-toggle">Ver</button></div>
-          <div class="acc-body">
-            <ul>
-              <li>Usar mapas mentales y esquemas con colores.</li>
-              <li>Resaltar ideas clave con iconos y pictogramas.</li>
-              <li>Convertir texto en infografías breves.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="acc-item">
-          <div class="acc-head"><h5>Auditivo — Estrategias</h5><button class="btn secondary acc-toggle">Ver</button></div>
-          <div class="acc-body">
-            <ul>
-              <li>Grabar resúmenes y escuchar en intervalos cortos.</li>
-              <li>Practicar explicaciones en voz alta o tutorías</li>
-              <li>Usar ritmos o mnemotecnias auditivas.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="acc-item">
-          <div class="acc-head"><h5>Kinestésico — Estrategias</h5><button class="btn secondary acc-toggle">Ver</button></div>
-          <div class="acc-body">
-            <ul>
-              <li>Diseñar prácticas, laboratorios y actividades manuales.</li>
-              <li>Utilizar dramatizaciones y role-play.</li>
-              <li>Hacer pausas activas para consolidar aprendizaje.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- más items -->
-      </div>
+      <h3>Estrategias</h3>
+      <ul>
+        <li>Visual: mapas mentales y esquemas.</li>
+        <li>Auditivo: grabaciones y explicaciones en voz alta.</li>
+        <li>Kinestésico: actividades prácticas.</li>
+      </ul>
     </section>
 
-    <!-- TAB: ACTIVITIES -->
+    <!-- ACTIVIDADES -->
     <section id="activities" class="section" style="display:none">
-      <div class="heading"><h3>Actividades prácticas (puedes insertar recursos)</h3></div>
-      <p>Ejemplos listos para usar en el aula o en estudio autodirigido. Cada tarjeta tiene espacio para una imagen o recurso.</p>
-
-      <div class="grid">
-        <div class="tile">
-          <h4>Actividad: Mapa mental colaborativo</h4>
-          <p>Dividir la clase en grupos y construir un mapa mental en papelógrafo o en una pizarra digital.</p>
-          <div style="height:110px;border-radius:8px;background:#fff;border:2px dashed rgba(143,47,47,0.06);display:flex;align-items:center;justify-content:center;color:var(--vino);font-weight:700">INSERTAR IMAGEN / EMBED</div>
-        </div>
-
-        <div class="tile">
-          <h4>Actividad: Podcast de 5 minutos</h4>
-          <p>Alumnos graban breves resúmenes orales y los comparten para que otros los escuchen y comenten.</p>
-          <div style="height:110px;border-radius:8px;background:#fff;border:2px dashed rgba(143,47,47,0.06);display:flex;align-items:center;justify-content:center;color:var(--vino);font-weight:700">AÑADIR AUDIO</div>
-        </div>
-
-        <div class="tile">
-          <h4>Actividad: Mini laboratorio práctico</h4>
-          <p>Proponer una experiencia corta que el estudiante pueda replicar y documentar.</p>
-          <div style="height:110px;border-radius:8px;background:#fff;border:2px dashed rgba(143,47,47,0.06);display:flex;align-items:center;justify-content:center;color:var(--vino);font-weight:700">AÑADIR VIDEO</div>
-        </div>
-      </div>
+      <h3>Actividades prácticas</h3>
+      <p>Mapas mentales, podcasts y experimentos sencillos.</p>
     </section>
 
-    <!-- TAB: COMPARE -->
+    <!-- COMPARATIVA -->
     <section id="compare" class="section" style="display:none">
-      <div class="heading"><h3>Tabla comparativa — Ventajas y limitaciones</h3></div>
-      <div class="compare">
-        <table aria-describedby="comparative">
-          <thead>
-            <tr><th>Tipo</th><th>Ventajas</th><th>Limitaciones</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Visual</td><td>Retención espacial y estructural</td><td>Menos eficaz en ausencia de materiales</td></tr>
-            <tr><td>Auditivo</td><td>Fácil revisión en formatos audio</td><td>Requiere ambiente tranquilo</td></tr>
-            <tr><td>Kinestésico</td><td>Aprendizaje activo y duradero</td><td>Mayor logística y recursos</td></tr>
-            <tr><td>Lectura/Escritura</td><td>Profundiza conceptos</td><td>Puede ser monótono sin variantes</td></tr>
-            <tr><td>Social</td><td>Estimula pensamiento crítico</td><td>Depende de la dinámica grupal</td></tr>
-            <tr><td>Solitario</td><td>Favorece autonomía</td><td>Puede aislar sin feedback</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <h3>Tabla comparativa</h3>
+      <table>
+        <tr>
+          <th>Tipo</th>
+          <th>Ventajas</th>
+          <th>Limitaciones</th>
+        </tr>
+        <tr>
+          <td>Visual</td>
+          <td>Buena retención</td>
+          <td>Depende de materiales</td>
+        </tr>
+        <tr>
+          <td>Auditivo</td>
+          <td>Fácil repaso</td>
+          <td>Ruido ambiental</td>
+        </tr>
+      </table>
     </section>
 
   </main>
 
- <!-- ========== MODAL IMAGEN (SIMPLE) ========== -->
-<div id="modal" aria-hidden="true" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:80">
-  <div style="background:#fff;padding:14px;border-radius:12px;max-width:860px;width:92%;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
-    <div style="display:flex;justify-content:flex-end">
-      <button id="closeModal" class="btn secondary">Cerrar</button>
-    </div>
-    <div id="modalContent" style="margin-top:10px"></div>
-  </div>
 </div>
 
 <script>
-  // TABS
   const tabs = document.querySelectorAll('.tab-btn');
-  tabs.forEach(btn=>{
-    btn.addEventListener('click', ()=> {
-      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const target = btn.dataset.tab;
-      document.querySelectorAll('main > section').forEach(sec=>{
-        sec.style.display = (sec.id === target) ? '' : 'none';
+      document.querySelectorAll('main > section').forEach(sec => {
+        sec.style.display = sec.id === target ? 'block' : 'none';
       });
-      window.scrollTo({top:200,behavior:'smooth'});
     });
   });
-
-  // ACCORDION
-  document.querySelectorAll('.acc-toggle').forEach(toggle=>{
-    toggle.addEventListener('click', (e)=>{
-      const item = e.target.closest('.acc-item');
-      const body = item.querySelector('.acc-body');
-      const open = body.style.display === 'block';
-      document.querySelectorAll('.acc-body').forEach(b=>b.style.display='none');
-      if(!open) body.style.display = 'block'; else body.style.display='none';
-    });
-  });
-
-  // MEDIA PLACEHOLDER: abrir modal para insertar imagen/video
-  const openMedia = document.getElementById('openMedia');
-  const modal = document.getElementById('modal');
-  const modalContent = document.getElementById('modalContent');
-  const closeModal = document.getElementById('closeModal');
-
-  openMedia.addEventListener('click', ()=> {
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden','false');
-    modalContent.innerHTML = `
-      <div style="display:flex;gap:10px;flex-direction:column">
-        <p style="margin:0;color:var(--texto)">Pega aquí una URL de imagen o video (YouTube embed). Prueba con: <em>https://via.placeholder.com/800x400</em></p>
-        <input id="resInput" placeholder="URL de imagen o iframe embed" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:100%">
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button id="insertRes" class="btn">Insertar</button>
-          <button id="closeLocal" class="btn secondary">Cancelar</button>
-        </div>
-      </div>
-    `;
-    document.getElementById('closeLocal').addEventListener('click', ()=> { modal.style.display='none'; modal.setAttribute('aria-hidden','true'); });
-    document.getElementById('insertRes').addEventListener('click', ()=>{
-      const val = document.getElementById('resInput').value.trim();
-      if(!val) return alert('Pega una URL válida.');
-      // decide si es iframe (youtube) o imagen
-      const isYouTube = val.includes('youtube.com') || val.includes('youtu.be');
-      const mediaBox = document.querySelector('.media .placeholder');
-      if(isYouTube){
-        mediaBox.innerHTML = `<iframe width="100%" height="160" src="${val.replace('watch?v=','embed/')}" frameborder="0" allowfullscreen style="border-radius:8px"></iframe>`;
-      } else {
-        mediaBox.innerHTML = `<img src="${val}" alt="Recurso" style="width:100%;height:160px;object-fit:cover;border-radius:8px">`;
-      }
-      modal.style.display='none'; modal.setAttribute('aria-hidden','true');
-    });
-  });
-
-  closeModal.addEventListener('click', ()=> { modal.style.display='none'; modal.setAttribute('aria-hidden','true'); });
-
-  // TOGGLE MODO LECTURA (reduce sombras y colores para lectura centrada)
-  const toggleRead = document.getElementById('toggleRead');
-  let readMode = false;
-  toggleRead.addEventListener('click', ()=>{
-    readMode = !readMode;
-    if(readMode){
-      document.body.style.background = '#fff';
-      document.querySelectorAll('.tile').forEach(t=>t.style.boxShadow='none');
-      toggleRead.textContent = 'Salir lectura';
-    } else {
-      document.body.style.background = 'linear-gradient(180deg,var(--crema) 0%, #f7ecd7 100%)';
-      document.querySelectorAll('.tile').forEach(t=>t.style.boxShadow='0 8px 18px rgba(0,0,0,0.12)');
-      toggleRead.textContent = 'Modo lectura';
-    }
-  });
-
-  // Abrir recursos (ejemplo simple)
-  document.getElementById('openResources').addEventListener('click', ()=>{
-    modal.style.display='flex'; modal.setAttribute('aria-hidden','false');
-    modalContent.innerHTML = `<h3 style="color:var(--vino)">Recursos sugeridos</h3>
-      <ul style="margin-top:8px">
-        <li>Guías pedagógicas sobre estilos de aprendizaje (PDF)</li>
-        <li>Ejemplos de actividades prácticas para aula</li>
-        <li>Plantillas imprimibles: mapas mentales, rúbricas y fichas</li>
-      </ul>
-    `;
-  });
-
-  // accesibilidad: close modal con ESC
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); } });
-
-  // Inicial focus: asegurar que el primer tab muestre su sección
-  document.querySelector('.tab-btn[data-tab="types"]').click();
 </script>
 
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TIPOS DE APRENDIZAJE — FLOR</title>
-
-    <style>
-        :root {
-            --naranja: #e67e22;
-            --crema: #f8e5c8;
-            --blanco: #ffffff;
-            --negro: #1b1b1b;
-        }
-
-        body {
-            font-family: "Segoe UI", sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--crema);
-            color: var(--negro);
-        }
-
-        header {
-            background: var(--naranja);
-            padding: 25px;
-            text-align: center;
-            color: var(--blanco);
-            font-size: 35px;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        nav {
-            background: var(--blanco);
-            padding: 12px;
-            text-align: center;
-        }
-
-        nav a {
-            margin: 0 15px;
-            color: var(--naranja);
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            border-bottom: 2px solid var(--naranja);
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 35px 0;
-            line-height: 1.6;
-            font-size: 19px;
-        }
-
-        h2 {
-            color: var(--naranja);
-            border-left: 6px solid var(--naranja);
-            padding-left: 10px;
-        }
-
-        ul li { margin-bottom: 6px; }
-
-        .background-light {
-            background: var(--blanco);
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #00000015;
-        }
-
-        footer {
-            background: var(--naranja);
-            text-align: center;
-            padding: 12px;
-            color: var(--blanco);
-            font-weight: bold;
-            margin-top: 40px;
-        }
-
-        .fade-in { animation: fade 1.5s ease-in-out; }
-        @keyframes fade { 0% { opacity:0; } 100% { opacity:1; } }
-    </style>
-</head>
-
-<body>
-
-
-
-
-
-<nav>
-    <a href="#Psicologia">Psicología Educativa</a>
-    <a href="#contexto">Aprendizaje según contexto</a>
-</nav>
-
-<main>
-    <section class="container fade-in" id="psicologia">
-        <h2>1. Aprendizaje según la Psicología Educativa</h2>
-        <p>La psicología educativa analiza cómo el ser humano adquiere nuevos conocimientos y cómo influyen la motivación, la memoria, la experiencia y el entorno.</p>
-        
-        <ul>
-            <li><b>Aprendizaje por Condicionamiento:</b> se basa en estímulos → respuestas, reforzamientos o castigos.</li>
-            <li><b>Observacional (Bandura):</b> aprendemos observando modelos y luego imitándolos.</li>
-            <li><b>Significativo (Ausubel):</b> el conocimiento nuevo se integra con uno previo para comprender mejor.</li>
-            <li><b>Memorístico:</b> repetición de datos sin una conexión profunda o comprensión real.</li>
-        </ul>
-    </section>
-
-    <section class="container background-light fade-in" id="contexto">
-        <h2>2. Aprendizaje según el Contexto</h2>
-        <p>Dependiendo del lugar, estructura y libertad del estudiante, el aprendizaje cambia.</p>
-        
-        <ul>
-            <li><b>Formal:</b> ocurre en escuelas, cursos y espacios estructurados.</li>
-            <li><b>Informal:</b> se da en la vida diaria, conversaciones, exploración.</li>
-            <li><b>Autodidacta:</b> nace por iniciativa personal, investigación propia, curiosidad.</li>
-        </ul>
-    </section>
-</main>
-
-
-    <section class="container fade-in" id="factores">
-        <h2>3. Factores que Influyen en el Aprendizaje</h2>
-        <p>El aprendizaje no depende únicamente de un método. Existen diversos factores internos y externos que influyen en la forma en que adquirimos conocimientos.</p>
-
-        <div class="background-light" style="margin-top:20px;">
-            <h3 style="color:var(--naranja);">Motivación</h3>
-            <p>Es el impulso que nos lleva a aprender. Cuando existe interés y propósito, el estudiante se esfuerza más, persevera y logra mejores resultados.</p>
-        </div>
-
-        <div class="background-light" style="margin-top:20px;">
-            <h3 style="color:var(--naranja);">Ambiente de estudio</h3>
-            <p>Un entorno ordenado, iluminado y libre de distracciones favorece la concentración. El espacio físico y emocional construye un clima de aprendizaje.</p>
-        </div>
-
-        <div class="background-light" style="margin-top:20px;">
-            <h3 style="color:var(--naranja);">Emociones</h3>
-            <p>Sentimientos como alegría, interés y seguridad mejoran la retención de información. Por el contrario, el estrés, miedo o presión pueden bloquear el aprendizaje.</p>
-        </div>
-
-        <div class="background-light" style="margin-top:20px;">
-            <h3 style="color:var(--naranja);">Tecnología y recursos digitales</h3>
-            <p>Herramientas como videos, plataformas educativas y simuladores interactivos facilitan el acceso al conocimiento, permitiendo aprender en cualquier lugar y momento.</p>
-        </div>
-    </section>
-
-
-
-
-<!-- ========= 4. APLICACIONES PRÁCTICAS (VERSIÓN AMPLIADA) ========= -->
-<section class="container fade-in" id="aplicaciones">
-    <h2 style="color:#ff8c28; border-left-color:#ff8c28;">6. Aplicaciones Prácticas</h2>
-    <p>Conocer tu estilo de aprendizaje te permite trabajar con tu mente, no contra ella. Esto hace que estudiar sea más natural, fluido y eficiente.</p>
-
-
-    <!-- Bloque 1 -->
-    <div class="background-light" style="border-left:6px solid #ff8c28; margin-top:20px;">
-        <h3 style="color:#ff8c28;"> Cómo identificar tu estilo de aprendizaje</h3>
-        <p>Para descubrir cómo aprendes mejor, dedica unos minutos a observar tus hábitos. Hazte estas preguntas:</p>
-        <ul>
-            <li>¿Recuerdo mejor algo cuando lo veo, lo escucho o lo practico?</li>
-            <li>¿Me cuesta seguir una clase solo escuchando? ¿O me distraigo al leer?</li>
-            <li>¿Necesito escribir, subrayar o repetir en voz alta para memorizar?</li>
-            <li>¿Disfruto usar colores, gráficos, movimientos o explicaciones lógicas?</li>
-        </ul>
-        <p>Tu estilo aparece en tus preferencias cotidianas. Solo necesitas prestar atención.</p>
-    </div>
-
-
-    <!-- Bloque 2 -->
-    <div class="background-light" style="border-left:6px solid #ff8c28; margin-top:25px;">
-        <h3 style="color:#ff8c28;"> Estrategias según cada tipo de aprendizaje</h3>
-        <p>No todos aprendemos igual. Aquí tienes acciones concretas según cada estilo:</p>
-
-        <table style="width:100%; border-collapse:collapse; margin-top:10px;">
-            <tr style="background:#ffe1bd;">
-                <th style="padding:10px;">Estilo</th>
-                <th>Estrategias recomendadas</th>
-            </tr>
-            <tr>
-                <td style="padding:10px; font-weight:bold;">Visual </td>
-                <td>Mapas mentales, resúmenes con color, imágenes, videos, esquemas espaciales.</td>
-            </tr>
-            <tr style="background:#ffe1bd;">
-                <td style="padding:10px; font-weight:bold;">Auditivo </td>
-                <td>Explicar en voz alta, grabar audio, escuchar podcasts, estudiar conversando.</td>
-            </tr>
-            <tr>
-                <td style="padding:10px; font-weight:bold;">Kinestésico </td>
-                <td>Experimentar, manipular objetos, dramatizar, aprender caminando o haciendo.</td>
-            </tr>
-            <tr style="background:#ffe1bd;">
-                <td style="padding:10px; font-weight:bold;">Lógico </td>
-                <td>Organizar ideas con pasos, resolver problemas, usar números y patrones.</td>
-            </tr>
-        </table>
-
-        <p style="margin-top:10px;">No existe un estilo "mejor". Lo ideal es combinar estrategias según lo que estudies.</p>
-    </div>
-
-
-    <!-- Bloque 3 -->
-    <div class="background-light" style="border-left:6px solid #ff8c28; margin-top:25px;">
-        <h3 style="color:#ff8c28;"> Ejemplos en la vida diaria</h3>
-
-        <p style="font-weight:bold; margin-bottom:8px;"> Estudiar idiomas</p>
-        <ul>
-            <li>Visual: tarjetas y colores.</li>
-            <li>Auditivo: escuchar conversaciones reales.</li>
-            <li>Kinestésico: practicar con hablantes nativos.</li>
-        </ul>
-
-        <p style="font-weight:bold; margin-top:12px; margin-bottom:8px;"> Deportes</p>
-        <ul>
-            <li>Observar, imitar, corregir posturas y practicar repetidamente.</li>
-        </ul>
-
-        <p style="font-weight:bold; margin-top:12px; margin-bottom:8px;"> Música</p>
-        <ul>
-            <li>Tocar, escuchar, leer partituras, sentir el ritmo corporalmente.</li>
-        </ul>
-
-        <p style="font-weight:bold; margin-top:12px; margin-bottom:8px;"> Ciencias</p>
-        <ul>
-            <li>Experimentos, laboratorios, animaciones 3D, modelos y simulaciones.</li>
-        </ul>
-
-        <p style="margin-top:14px;">Cada actividad se adapta al estilo del estudiante, no al revés.</p>
-    </div>
-</section>
-
-
-
-<!-- ========= 5. CONCLUSIÓN (VERSIÓN AMPLIADA) ========= -->
-<section class="container fade-in" id="conclusion">
-    <h2 style="color:#ff8c28; border-left-color:#ff8c28;">7. Conclusión</h2>
-
-    <div class="background-light" style="margin-top:20px; padding:25px; border-left:6px solid #ff8c28;">
-        <h3 style="color:#ff8c28;"> Lo que aprendimos en esta página</h3>
-        <ul>
-            <li>Existen múltiples formas de aprender, ninguna superior a otra.</li>
-            <li>Cada estudiante procesa información a su manera y a su ritmo.</li>
-            <li>Reconocer tu estilo mejora la concentración y el rendimiento académico.</li>
-            <li>El aprendizaje es flexible: puedes combinar métodos para potenciarlo.</li>
-        </ul>
-
-        <br>
-        <h3 style="color:#ff8c28;">🌱 Conclusión final</h3>
-        <p>El aprendizaje es una experiencia personal. Cuando descubres cómo funciona tu mente, estudiar deja de ser una obligación y se convierte en crecimiento propio.</p>
-        <p style="font-weight:bold; font-size:18px;">Cada persona es una flor que florece a su tiempo. 🌸</p>
-        <p style="margin-top:10px;">No te compares, explórate, conoce tus procesos y aprende con amor hacia ti mismo.</p>
-
-        <p style="margin-top:18px; color:#ff8c28; font-weight:bold;">✨ La clave no es cuánto estudias, sino cómo estudias.</p>
-    </div>
-</section>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipos de Autismo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(#fbeee2, #f6d5bc);
-            margin: 0;
-            padding: 0;
-            color: #3a2e2e;
-        }
-        header {
-            background: linear-gradient(135deg, #d27c4b, #b2463b);
-            color: white;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.17);
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-        }
-        header h1 {
-            font-size: 45px;
-            margin: 0;
-        }
-        header p {
-            margin-top: 10px;
-            font-size: 18px;
-        }
-        .card {
-            padding: 30px;
-            max-width: 950px;
-            margin: 35px auto;
-            background: #ffffff;
-            border-radius: 18px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-        }
-        h2 {
-            color: #b2463b;
-            border-left: 8px solid #d27c4b;
-            padding-left: 12px;
-            margin-bottom: 18px;
-        }
-        ul li {
-            margin-bottom: 10px;
-        }
-        .subcard {
-            background: #fff5ed;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.10);
-            margin-top: 15px;
-        }
-        footer {
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-            color: #6a4e4e;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Tipos de Autismo</h1>
-        <p>Una guía clara, estética y organizada sobre el TEA</p>
-    </header>
-
-    <section class="card">
-        <h2>¿Qué es el Autismo?</h2>
-        <p>El Trastorno del Espectro Autista (TEA) es una condición neurológica que influye en la forma en que una persona percibe el entorno, procesa la información y se comunica. No es una enfermedad, sino una manera distinta de experimentar el mundo. Cada persona dentro del espectro es única y presenta diferentes niveles de apoyo.</p>
-
-        <div class="subcard">
-            <h3>Características Generales del TEA</h3>
-            <ul>
-                <li>Diferencias en la comunicación verbal y no verbal</li>
-                <li>Forma distinta de socializar o interpretar situaciones sociales</li>
-                <li>Preferencia por rutinas o actividades predecibles</li>
-                <li>Sensibilidad elevada o reducida a estímulos sensoriales</li>
-                <li>Intereses intensos y específicos</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="card">
-        <h2>Tipos Dentro del Espectro Autista</h2>
-
-        <div class="subcard">
-            <h3>Autismo de Alto Funcionamiento</h3>
-            <p>Personas con habilidades cognitivas promedio o superiores. Presentan dificultades sociales, sensibilidad sensorial y desafíos para manejar cambios inesperados.</p>
-        </div>
-
-        <div class="subcard">
-            <h3>Autismo Nivel 1</h3>
-            <p>Necesitan apoyo mínimo. Se observan dificultades para iniciar interacciones sociales, interpretar tono o expresiones, o manejar la flexibilidad en rutinas.</p>
-        </div>
-
-        <div class="subcard">
-            <h3>Autismo Nivel 2</h3>
-            <p>Necesitan apoyo notable. Las dificultades comunicativas son más marcadas y los comportamientos repetitivos pueden ser más evidentes.</p>
-        </div>
-
-        <div class="subcard">
-            <h3>Autismo Nivel 3</h3>
-            <p>Requieren apoyo muy elevado. Las habilidades de comunicación pueden ser muy limitadas y se necesita asistencia constante para actividades diarias.</p>
-        </div>
-
-        <div class="subcard">
-            <h3>Autismo No Verbal</h3>
-            <p>Personas que no utilizan el habla como principal forma de comunicación. Pueden comunicarse mediante señas, pictogramas, dispositivos o expresiones corporales.</p>
-        </div>
-
-        <div class="subcard">
-            <h3>Asperger</h3>
-            <p>Antes se consideraba un diagnóstico separado. Hoy forma parte del TEA. Se caracteriza por intereses muy profundos, dificultades sociales y pensamiento lógico muy fuerte.</p>
-        </div>
-    </section>
-
-    <section class="card">
-        <h2>¿Cómo Identificarlo?</h2>
-        <ul>
-            <li>Dificultad para mantener contacto visual</li>
-            <li>Preferencia por actividades solitarias</li>
-            <li>Retrasos en el lenguaje o uso literal del mismo</li>
-            <li>Movimientos repetitivos (alas, balanceo)</li>
-            <li>Reacciones intensas a sonidos o texturas</li>
-        </ul>
-    </section>
-
-    <section class="card">
-        <h2>Apoyos y Herramientas Recomendas</h2>
-        <ul>
-            <li>Ambientes tranquilos, con poco ruido y sin estímulos fuertes</li>
-            <li>Uso de agendas visuales para organizar el día</li>
-            <li>Comunicación clara, concreta y directa</li>
-            <li>Tiempo para procesar la información</li>
-            <li>Material sensorial adecuado (texturas suaves, objetos para manos, pelotas anti estrés)</li>
-            <li>Acompañamiento profesional cuando sea necesario</li>
-        </ul>
-    </section>
-
-  
-    <section class="card">
-        <h2>Galería Visual</h2>
-        <p>Imágenes ilustrativas para comprender mejor los diferentes aspectos del TEA.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-            <div class="subcard" style="text-align:center;">
-                <img src="https://elpradopsicologos.es/storage/posts/May2024/Neurodivergencia%20Ilustraci%C3%B3n.png" alt="Ilustración 1" style="width:100%; border-radius:12px;">
-                <p>Neurodiversidad y formas distintas de pensar.</p>
-            </div>
-            <div class="subcard" style="text-align:center;">
-                <img src="https://www.autismopuebla.org/wp-content/uploads/2024/09/TRASTORNO-DEL-ESPECTRO-AUTISTA-1024x683-1-1024x675.webp" alt="Ilustración 2" style="width:100%; border-radius:12px;">
-                <p>Comunicación alternativa y apoyos visuales.</p>
-            </div>
-            <div class="subcard" style="text-align:center;">
-                <img src="https://estaticos-cdn.prensaiberica.es/clip/3a85b73d-a0aa-4f1a-a8a9-17b77b3f7dd8_mobile-ep-aspect-ratio_default_0.jpg" alt="Ilustración 3" style="width:100%; border-radius:12px;">
-                <p>Ambientes sensoriales adaptados.</p>
-            </div>
-        </div>
-    </section>
-
-    
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formulario — Información TEA</title>
-  <style>
-    :root {
-      --naranja: #e67e22;
-      --crema: #f8e5c8;
-      --blanco: #ffffff;
-      --negro: #1b1b1b;
-      --gris-claro: #f0ece6;
-      --border-radius: 8px;
-      --input-padding: 12px;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: var(--crema);
-      color: var(--negro);
-      line-height: 1.5;
-    }
-
-    header {
-      background: var(--naranja);
-      padding: 25px;
-      text-align: center;
-      color: var(--blanco);
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 600px;
-      margin: 30px auto;
-      background: var(--blanco);
-      padding: 25px 30px;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .container h2 {
-      margin-top: 0;
-      color: var(--naranja);
-      border-left: 6px solid var(--naranja);
-      padding-left: 10px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: var(--input-padding);
-      border: 1px solid #ccc;
-      border-radius: var(--border-radius);
-      font-size: 16px;
-      background: var(--gris-claro);
-      color: var(--negro);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .btn-submit {
-      background: var(--naranja);
-      color: var(--blanco);
-      border: none;
-      padding: 14px 20px;
-      border-radius: var(--border-radius);
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .btn-submit:hover {
-      background: darken(var(--naranja), 10%);
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 20px;
-      }
-      .btn-submit {
-        padding: 12px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    Registro e Información — TEA
-  </header>
-
-  <div class="container">
-    <h2>Formulario de Evaluación / Registro</h2>
-    <form action="#" method="post">
-      <div class="form-group">
-        <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" required />
-      </div>
-
-      <div class="form-group">
-        <label for="edad">Edad</label>
-        <input type="number" id="edad" name="edad" min="0" required />
-      </div>
-
-      <div class="form-group">
-        <label for="genero">Género</label>
-        <select id="genero" name="genero" required>
-          <option value="" disabled selected>Selecciona</option>
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-          <option value="otro">Otro / Prefiero no decir</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="telefono">Teléfono de contacto</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="(XX) XXXXXXXX" />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-
-      <div class="form-group">
-        <label for="nivel">Nivel del espectro / Diagnóstico (si aplica)</label>
-        <select id="nivel" name="nivel">
-          <option value="" disabled selected>Selecciona (o deja en blanco)</option>
-          <option value="nivel1">Nivel 1</option>
-          <option value="nivel2">Nivel 2</option>
-          <option value="nivel3">Nivel 3</option>
-          <option value="sin-diagnostico">Sin diagnóstico formal</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="fecha_diagnostico">Fecha de diagnóstico (si aplica)</label>
-        <input type="date" id="fecha_diagnostico" name="fecha_diagnostico" />
-      </div>
-
-      <div class="form-group">
-        <label for="observaciones">Observaciones / Notas</label>
-        <textarea id="observaciones" name="observaciones" placeholder="Escribe aquí detalles relevantes..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="susceptibilidad_sensitiva">¿Presenta sensibilidad sensorial?</label>
-        <select id="susceptibilidad_sensitiva" name="susceptibilidad_sensitiva" required>
-          <option value="" disabled selected>Selecciona</option>
-          <option value="alta">Alta</option>
-          <option value="media">Media</option>
-          <option value="baja">Baja</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="apoyo">Tipo de apoyo requerido / actual</label>
-        <select id="apoyo" name="apoyo">
-          <option value="" disabled selected>Selecciona (o deja en blanco)</option>
-          <option value="ninguno">Ninguno</option>
-          <option value="terapia_occupacional">Terapia ocupacional</option>
-          <option value="terapia_lenguaje">Terapia de lenguaje</option>
-          <option value="acompañamiento_educativo">Acompañamiento educativo</option>
-          <option value="otro">Otro</option>
-        </select>
-      </div>
-
-      <button type="submit" class="btn-submit">Enviar Información</button>
-    </form>
-  </div>
-
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cuestionario — Tipos de Aprendizaje</title>
-  <style>
-    :root{
-      --crema: #f3dfc9;
-      --naranja: #f7a75d;
-      --naranja-claro:#f4b684;
-      --vino:#8f2f2f;
-      --texto:#402a18;
-      --card-shadow: rgba(0,0,0,0.12);
-      --glass: rgba(255,255,255,0.7);
-      --accent:#ff8c28;
-      --radius:12px;
-      --input-h:44px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial; color:var(--texto);background:linear-gradient(180deg,var(--crema) 0%, #f7ecd7 100%)}
-
-    .wrap{max-width:1100px;margin:28px auto;padding:20px}
-    header.site-header{background:var(--naranja);border-left:10px solid var(--vino);border-radius:var(--radius);padding:22px;box-shadow:0 10px 24px var(--card-shadow);display:flex;justify-content:space-between;align-items:center;gap:18px}
-    header h1{margin:0;color:#fff;font-size:22px}
-    header p{margin:0;color:rgba(255,255,255,0.95);font-weight:600}
-
-    .grid-layout{display:grid;grid-template-columns:1fr 420px;gap:20px;margin-top:20px;align-items:start}
-    .card{background:var(--naranja);border-left:10px solid var(--vino);padding:18px;border-radius:12px;box-shadow:0 8px 20px var(--card-shadow)}
-    .card h2{margin:0 0 8px 0;color:var(--vino)}
-    .card p{margin:0;color:var(--texto)}
-
-    aside.media{background:var(--naranja-claro);border-radius:12px;padding:14px;min-height:180px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center}
-    .placeholder{width:100%;height:160px;border-radius:10px;background:linear-gradient(90deg,#fbe4c8,#ffd9a3);display:flex;align-items:center;justify-content:center;color:var(--vino);font-weight:700;border:3px dashed rgba(143,47,47,0.12)}
-
-    /* Form styles */
-    .form-card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
-    form{display:flex;flex-direction:column;gap:12px}
-    .row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .full{grid-column:1/-1}
-
-    label{display:block;font-weight:700;margin-bottom:6px;font-size:14px}
-    input[type="text"],input[type="email"],input[type="tel"],input[type="number"],input[type="date"],select,textarea{
-      width:100%;padding:10px 12px;height:var(--input-h);border-radius:10px;border:1px solid #e6e0d6;background:#fbf8f3;font-size:15px;color:var(--texto);outline:none;transition:box-shadow .12s,border-color .12s
-    }
-    textarea{min-height:110px;resize:vertical;padding-top:12px;height:auto}
-    input[type="checkbox"],input[type="radio"]{transform:scale(1.05);margin-right:8px}
-
-    .hint{font-size:13px;color:rgba(64,42,24,0.7)}
-
-    .fieldset{background:linear-gradient(180deg,var(--crema),#fff);padding:12px;border-radius:10px;border-left:6px solid var(--vino)}
-    .options{display:flex;flex-wrap:wrap;gap:10px}
-    .option{background:#fff;padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);display:flex;align-items:center}
-
-    .btn-submit{background:var(--vino);color:#fff;border:none;padding:12px 16px;border-radius:10px;font-weight:800;cursor:pointer;margin-top:6px}
-    .btn-submit:focus{outline:3px solid rgba(143,47,47,0.12)}
-
-    /* focus effect */
-    input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 6px 20px rgba(255,140,40,0.08)}
-
-    /* small screens */
-    @media(max-width:900px){.grid-layout{grid-template-columns:1fr}.row{grid-template-columns:1fr}.placeholder{height:120px}}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header class="site-header">
-      <div>
-        <h1>Cuestionario — Tipos de Aprendizaje</h1>
-        <p>Ayuda a identificar preferencias y diseñar estrategias</p>
-      </div>
-      <div style="text-align:right;color:#fff;font-weight:700">Evaluación rápida</div>
-    </header>
-
-    <div class="grid-layout">
-      <main>
-        <div class="card form-card">
-          <h2 style="color:var(--vino);margin-top:0">Formulario: Perfil de Aprendizaje</h2>
-          <p class="hint">Completa las siguientes preguntas para conocer mejor tu estilo de aprendizaje. Los campos con * son obligatorios.</p>
-
-          <form>
-  <label>1. ¿Cuál es tu estilo de aprendizaje predominante?
-    <select name="estilo">
-      <option value="visual">Visual</option>
-      <option value="auditivo">Auditivo</option>
-      <option value="kinestesico">Kinestésico</option>
-      <option value="lector_escritor">Lector/Escritor</option>
-    </select>
-  </label>
-
-  <label>2. ¿Qué actividades disfrutas más al estudiar?
-    <input type="text" name="actividades_preferidas">
-  </label>
-
-  <label>3. ¿Prefieres estudiar solo o acompañado?
-    <select name="companeros">
-      <option value="solo">Solo</option>
-      <option value="acompanado">Acompañado</option>
-    </select>
-  </label>
-
-  <label>4. ¿Cuántas horas dedicas al estudio diariamente?
-    <input type="number" name="horas">
-  </label>
-
-  <label>5. ¿Qué técnicas de estudio utilizas más?
-    <input type="text" name="tecnicas">
-  </label>
-
-  <label>6. ¿Te cuesta memorizar información?
-    <select name="memorizacion">
-      <option value="si">Sí</option>
-      <option value="no">No</option>
-      <option value="a_veces">A veces</option>
-    </select>
-  </label>
-
-  <label>7. ¿Qué tipo de recursos usas al estudiar?
-    <input type="text" name="recursos">
-  </label>
-
-  <label>8. ¿Te distraes fácilmente?
-    <select name="distraccion">
-      <option value="si">Sí</option>
-      <option value="no">No</option>
-      <option value="depende">Depende</option>
-    </select>
-  </label>
-
-  <label>9. ¿Prefieres aprender practicando o escuchando?
-    <select name="forma_aprender">
-      <option value="practicando">Practicando</option>
-      <option value="escuchando">Escuchando</option>
-      <option value="leyendo">Leyendo</option>
-      <option value="observando">Observando</option>
-    </select>
-  </label>
-
-  <label>10. ¿Qué materia se te facilita más y por qué?
-    <textarea name="materia_facil"></textarea>
-  </label>
-
-  <button type="submit">Enviar Respuestas</button>
-</form>
-        </div>
-      </main>
-
-      <aside class="media">
-        <div class="placeholder">Guía rápida: cómo usar este cuestionario</div>
-        <small style="color:var(--vino);font-weight:700">Consejos</small>
-        <ul style="margin:0;padding-left:18px;color:var(--texto)">
-          <li>Respóndelo con sinceridad para obtener mejores recomendaciones.</li>
-          <li>Combina recursos si no estás seguro de una sola preferencia.</li>
-          <li>Revisa tu respuesta en 'Describe...' para detectar pistas sobre preferencias reales.</li>
-        </ul>
-      </aside>
-    </div>
-  </div>
-
-  <script>
-    // pequeño manejo; evitar envío real
-    document.getElementById('quizForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      // recolectar datos y mostrar modal simple
-      const data = new FormData(this);
-      let summary = '';
-      for(const [k,v] of data.entries()){
-        summary += `<li><strong>${k}:</strong> ${v}</li>`;
-      }
-      alert('Thanks! Cuestionario recibido. (Demo)');
-    });
-  </script>
 </body>
 </html>
