@@ -1,0 +1,177 @@
+/* ===== PALETA DE COLORES ===== */
+:root{
+  --crema: #f3dfc9;
+  --naranja: #f7a75d;
+  --naranja-claro: #f4b684;
+  --vino: #8f2f2f;
+  --texto: #402a18;
+  --card-shadow: rgba(0,0,0,0.18);
+}
+
+/* ===== RESET BÁSICO ===== */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: "Poppins", system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--crema), #f7ecd7);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+/* ===== CONTENEDOR GENERAL ===== */
+.wrap{
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 20px;
+}
+
+/* ===== HEADER ===== */
+.site-header{
+  background: var(--naranja);
+  border-left: 10px solid var(--vino);
+  border-radius: 12px;
+  padding: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 24px var(--card-shadow);
+}
+
+.title h3{
+  color: #fff;
+}
+
+.title p{
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== BOTONES ===== */
+.cta-row{
+  display: flex;
+  gap: 10px;
+}
+
+.btn{
+  background: var(--vino);
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn.secondary{
+  background: transparent;
+  color: var(--vino);
+  border: 2px solid rgba(143,47,47,0.3);
+}
+
+/* ===== INTRO ===== */
+.intro{
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.card{
+  background: var(--naranja-claro);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 20px var(--card-shadow);
+}
+
+.card h2{
+  color: var(--vino);
+  margin-bottom: 10px;
+}
+
+/* ===== MEDIA ===== */
+.media{
+  background: var(--naranja-claro);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeholder{
+  width: 100%;
+  height: 160px;
+  border: 3px dashed rgba(143,47,47,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--vino);
+  cursor: pointer;
+}
+
+/* ===== TABS ===== */
+.tabs{
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab-btn{
+  background: transparent;
+  border: 2px solid rgba(143,47,47,0.2);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--vino);
+}
+
+.tab-btn.active{
+  background: var(--vino);
+  color: #fff;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+/* ===== TARJETAS ===== */
+.tile{
+  background: var(--naranja-claro);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 8px 18px var(--card-shadow);
+}
+
+.tile h4{
+  color: var(--vino);
+  margin-bottom: 6px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top: 30px;
+  padding: 18px;
+  border-radius: 10px;
+  background: var(--vino);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px){
+  .intro{
+    grid-template-columns: 1fr;
+  }
+}
